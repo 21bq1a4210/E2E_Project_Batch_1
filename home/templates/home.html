@@ -21,8 +21,9 @@
         <a class="navbar-brand" href="https://www.vvitguntur.com/#"><img src="{% static 'images/VVIT_logo.svg' %}" alt="logo" class="logo w-25"/></a>
     </div>
     <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="user_profile.html">Login</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="{% url 'login_user' %}">Login</a></li>
+<!--        <li><a href="user_profile.html">Login</a></li>-->
         <li><a href="">SignUp</a></li>
         <li><a href="">About US</a></li>
     </ul>
