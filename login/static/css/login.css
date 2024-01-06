@@ -202,3 +202,25 @@ a{
     text-decoration: none;
     color: black;
 }
+
+/* For message */
+.messages {
+    list-style-type: none;
+    padding: 10px;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
+.warning {
+    color: orange;
+}
+
+.info {
+    color: blue;
+}
