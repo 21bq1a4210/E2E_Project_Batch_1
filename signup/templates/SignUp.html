@@ -24,7 +24,7 @@
                     <a class="nav-link back1" href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link back1" href="{% url 'login_user' %}">Login</a>
+                    <a class="nav-link back1" href="{% url 'login:login_user' %}">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link back1" href="#">SignUp</a>
@@ -45,53 +45,101 @@
                 <!--form tag created-->
                 <div class="d-flex flex-column justify-content-center p-3">
                 <h1 class="text-center text-3xl ">SignUp</h1>
-                <form >
+                <form method="post" action="{% url 'signup' %}" >
+                    {% csrf_token %}
+
                     <!--Name-->
                     <div class="form-floating mb-3 m-2 w-40">
-                        <input type="text" class="form-control input_class" id="floatingInput1" placeholder="name">
-                        <label for="floatingInput1">Name</label>
+                        <input name= 'first_name' type="text" class="form-control input_class" id="floatingInput1" placeholder="name">
+                        <label for="floatingInput1">First Name</label>
                     </div>
                    <!--last name-->
                     <div class="form-floating mb-3 m-2 w-40">
-                        <input type="text" class="form-control input_class" id="floatingInput2" placeholder="lastname">
+                        <input name="last_name" type="text" class="form-control input_class" id="floatingInput2" placeholder="lastname">
                         <label for="floatingInput2">Last Name</label>
                     </div>
                     <!--user name-->
                     <div class="form-floating mb-3 m-2 w-40">
-                        <input type="text" class="form-control input_class" id="floatingInput3" placeholder="username">
+                        <input name="username" type="text" class="form-control input_class" id="floatingInput3" placeholder="username">
                         <label for="floatingInput3">User Name</label>
                     </div>
                     <!--email-->
                     <div class="form-floating mb-3 m-2 w-40">
-                        <input type="email" class="form-control input_class" id="floatingInput4" placeholder="Email">
+                        <input name="email" type="email" class="form-control input_class" id="floatingInput4" placeholder="Email">
                         <label for="floatingInput4">Email</label>
                     </div>
                  <!--RollNo-->
                     <div class="form-floating mb-3 m-2 w-40">
-                        <input type="text" class="form-control input_class" id="floatingInput5" placeholder="RollNo">
+                        <input name="roll_number" type="text" class="form-control input_class" id="floatingInput5" placeholder="RollNo">
                         <label for="floatingInput5">RollNo</label>
                     </div>
                     <!--Branch-->
                     <div class="form-floating mb-3 m-2 w-40">
-                        <input type="text" class="form-control input_class" id="floatingInput8" placeholder="Branch">
+                        <select class="form-control input_class" id="floatingInput8" name="branch">
+                            <option value="" selected disabled>Choose Branch</option>
+                            <option value="CIV">Civil Engineering</option>
+                            <option value="EEE">Electrical and Electronics Engineering</option>
+                            <option value="MEC">Mechanical Engineering</option>
+                            <option value="ECE">Electronics and Communication Engineering</option>
+                            <option value="CSE">Computer Science Engineering</option>
+                            <option value="INF">Information Technology</option>
+                            <option value="CSM">Computer Science - Artificial Intelligence and Machine Learning</option>
+                            <option value="CSO">Computer Science - Internet of Things</option>
+                            <option value="CIC">Computer Science - Internet of Things & Cybersecurity</option>
+                            <option value="AIM">Artificial Intelligence and Machine Learning</option>
+                            <option value="AID">Artificial Intelligence and Data Science</option>
+                        </select>
                         <label for="floatingInput8">Branch</label>
                     </div>
+
+                    <!--Section-->
+                    <div class="form-floating mb-3 m-2 w-40">
+                        <select class="form-control input_class" name="section">
+                            <option value="" selected disabled>Choose Section</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                        </select>
+                        <label for="floatingInput8">Section</label>
+                    </div>
+
+                    <!--Year-->
+                    <div class="form-floating mb-3 m-2 w-40">
+                        <select class="form-control input_class" name="year">
+                            <option value="" selected disabled>Choose year</option>
+                            <option value="I">I</option>
+                            <option value="II">II</option>
+                            <option value="III">III</option>
+                            <option value="IV">IV</option>
+                        </select>
+                        <label for="floatingInput8">Year</label>
+                    </div>
+
                     <!--password-->
                     <div class="form-floating mb-3 m-2 w-40">
-                        <input type="password" class="form-control input_class" id="floatingInput6" placeholder="Password">
+                        <input name="password1" type="password" class="form-control input_class" id="floatingInput6" placeholder="Password">
                         <label for="floatingInput6">Password</label>
                     </div>
                     <!--confirm password-->
                     <div class="form-floating mb-3 m-2 w-40">
-                        <input type="password" class="form-control input_class" id="floatingInput7" placeholder="Confirm Password">
+                        <input name="password2" type="password" class="form-control input_class" id="floatingInput7" placeholder="Confirm Password">
                         <label for="floatingInput7">Confirm Password</label>
                     </div>
                     <!--submit button-->
                     <p>If you are a member?<a a href="Login_page.html">Login</a></p>
-                    <div class="d-flex flex-row justify-content-center">
-                    <button type="button" class="btn mt-3 btn-primary" data-mdb-ripple-init>Create Account</button>
+                    <div>
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                 <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
                     </div>
-
+                    <div class="d-flex flex-row justify-content-center">
+                    <button type="submit" class="btn mt-3 btn-primary" data-mdb-ripple-init>Create Account</button>
+                    </div>
                 </form>
                 </div>
            </div>
