@@ -24,13 +24,23 @@ def signup(request):
             messages.success(request, 'Registration success!')
             return redirect('login')
         else:
+            error_list = []
+
             for field, errors in user_form.errors.items():
                 for error in errors:
-                    messages.error(request, f"{field}: {error}")
+                    error_message = f"{field}: {error}"
+                    if error_message not in error_list:
+                        error_list.append(error_message)
+                        if error_message not in messages.get_messages(request):
+                            messages.error(request, error_message)
 
             for field, errors in student_form.errors.items():
                 for error in errors:
-                    messages.error(request, f"{field}: {error}")
+                    error_message = f"{field}: {error}"
+                    if error_message not in error_list:
+                        error_list.append(error_message)
+                        if error_message not in messages.get_messages(request):
+                            messages.error(request, error_message)
 
     else:
         user_form = StudentRegistrationForm()

@@ -48,8 +48,7 @@
             <div class="d-none d-sm-none d-md-none d-xl-block d-lg-block col-md-6 col-xl-6 col-xl-6 pt-3 order-2">
                 <div class="card ml-5 shadow-lg w-75 h-auto m-3">
                     <h4 class="pt-3">Login</h4>
-                    <p>Please Enter Valid User Name</p>
-
+                    <p>Please Enter Valid User Name <br> &  Password</p>
                     <form method="post" action="{% url 'login' %}">
                         {% csrf_token %}
                         <div class="texts d-flex flex-column justify-content-center">
@@ -65,9 +64,6 @@
                             <button type="submit" class="btn mt-3" data-mdb-ripple-init> Login</button>
                         </div>
                     </form>
-
-
-
                 </div>
             </div>
         </div>
