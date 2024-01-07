@@ -24,7 +24,7 @@
                     <a class="nav-link back1" href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link back1" href="{% url 'login:login_user' %}">Login</a>
+                    <a class="nav-link back1" href="{% url 'login' %}">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link back1" href="#">SignUp</a>
@@ -127,15 +127,15 @@
                         <label for="floatingInput7">Confirm Password</label>
                     </div>
                     <!--submit button-->
-                    <p>If you are a member?<a a href="Login_page.html">Login</a></p>
+                    <p>If you are a member?<a a href="{% url 'login' %}">Login</a></p>
                     <div>
                         {% if messages %}
-                        <ul class="messages">
-                            {% for message in messages %}
-                                 <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                     <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
                     </div>
                     <div class="d-flex flex-row justify-content-center">
                     <button type="submit" class="btn mt-3 btn-primary" data-mdb-ripple-init>Create Account</button>
