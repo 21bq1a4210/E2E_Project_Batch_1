@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'login.apps.LoginConfig',
     'signup.apps.SignupConfig',
     'chatbot.apps.ChatbotConfig',
+    'forgotpassword.apps.ForgotpasswordConfig',
 ]
 
 MIDDLEWARE = [
