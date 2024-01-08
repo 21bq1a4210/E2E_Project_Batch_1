@@ -1,5 +1,38 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import SetPasswordForm
 
 # Create your views here.
 def forgotpassword(request):
-    return render(request, 'forgotpassword.html')
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        user = User.objects.filter(email=email).first()
+        print(email, user)
+        if user:
+            # Simulate OTP generation and verification
+            generated_otp = "123456"  # Replace this with your actual OTP generation logic
+            entered_otp = request.POST.get('otp')
+
+            if entered_otp == generated_otp:
+                # OTP is verified, update the template context
+                if request.method == 'POST':
+                    form = SetPasswordForm(user, request.POST)
+                    if form.is_valid():
+                        form.save()
+                        update_session_auth_hash(request, form.user)
+                        messages.success(request, 'Password updated successfully.')
+                        return redirect('password_reset_done')  # Redirect to a success page
+                    else:
+                        messages.error(request, 'Invalid form submission. Please try again.')
+
+                return render(request, 'forgotpassword.html', {'email_exists': True, 'otp_verified': True, 'form': form})
+
+            else:
+                messages.error(request, 'Invalid OTP. Please try again.')
+
+        else:
+            messages.error(request, 'Email not found in the database.')
+
+    return render(request, 'forgotpassword.html', {'email_exists': False, 'otp_verified': False})
