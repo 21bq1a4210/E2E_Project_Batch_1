@@ -2,6 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Student(models.Model):
+    GENDER_CHOICES = [
+        ('male', 'Male'),
+        ('female', 'Female'),
+        ('other', 'Other'),
+    ]
+
     SECTION_CHOICES = [
         ('A', 'A'),
         ('B', 'B'),
@@ -35,6 +41,7 @@ class Student(models.Model):
     section = models.CharField(max_length=1, choices=SECTION_CHOICES)
     branch = models.CharField(max_length=3, choices=BRANCH_CHOICES)
     year = models.CharField(max_length=3, choices=YEAR_CHOICES, default='I')  # Set the default value here
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='male')  # Add the gender field
 
     def __str__(self):
         return self.user.username
