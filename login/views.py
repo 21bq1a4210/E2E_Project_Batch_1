@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
+username = None
 # Create your views here.
 def login_user(request):
     #return HttpResponse('hello user')
