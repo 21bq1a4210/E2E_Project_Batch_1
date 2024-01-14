@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from login.views import username
 from signup.models import Student, User
 # Create your views here.
 def dashboard(request):
-    # Get the User object based on the provided 'username'
+    #Get the User object based on the provided 'username'
+    username = request.session.get('username', None)  # Retrieve username from session
     user = get_object_or_404(User, username=username)
 
     # Now, retrieve the associated Student object

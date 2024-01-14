@@ -24,7 +24,7 @@
                     <a class="nav-link " href="#">Home</a>
                 </li>
                 <li class="nav-item back1">
-                    <a class="nav-link " href="#">Login</a>
+                    <a class="nav-link " href="#">Logout</a>
                 </li>
                 <li class="nav-item back1">
                     <a class="nav-link " href="#">SignUp</a>
@@ -81,7 +81,7 @@
             <div class="card bg-transparent col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 ">
                 <div class="card bg-transparent d-flex flex-row justify-content-center ">
                 <div class="para">
-                    <h4> Hi,<strong id="studentName">StudentName </strong>&#x1F44B;<br></h4>
+                    <h4> Hi,<strong id="studentName">{{name}} </strong>&#x1F44B;<br></h4>
                     <ul>
                     <p>Explore the dashboard for the quick access <br>
                     essentials like filling complaint,requests <br>
@@ -161,13 +161,16 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <h4 class="mb-0">Profile</h4>
-                                            <p name='name' class="text-secondary">StudentName</p>
-                                            <p name='rollnumber' class="text-secondary">RollNo</p>
-                                            <p name='email' class="text-secondary">Email</p>
-                                            <p name='branch' class="text-secondary">Branch</p>
-                                            <p name="section" class="text-secondary">Section</p>
-                                            <p name='year' class="text-secondary">Year</p>
+                                            <div class="col-sm-12">
+                                                <h4 class="mb-0">Profile</h4>
+                                                <p class="text-secondary">StudentName: {{ name }}</p>
+                                                <p class="text-secondary">RollNo: {{ rollnumber }}</p>
+                                                <p class="text-secondary">Email: {{ email }}</p>
+                                                <p class="text-secondary">Branch: {{ branch }}</p>
+                                                <p class="text-secondary">Section: {{ section }}</p>
+                                                <p class="text-secondary">Year: {{ year }}</p>
+                                            </div>
+
                                         </div>
 
                                 </div>
