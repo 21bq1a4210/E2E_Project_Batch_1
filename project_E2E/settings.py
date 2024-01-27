@@ -84,7 +84,7 @@ DATABASES = {
 		'ENGINE': 'django.db.backends.mysql',
 		'NAME': 'project_E2E',
 		'USER': 'root',
-		'PASSWORD': 'sarath',
+		'PASSWORD': 'Sena@2003',
 		'HOST':'localhost',
 	}
 }
@@ -129,6 +129,7 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
+    "E:/E2E/E2E_Project_Batch_1/static",
 ]
 
 # Default primary key field type

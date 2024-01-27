@@ -1,7 +1,8 @@
 from django.urls import path
-from . import views
+from .views import dashboard, update_profile
 
-# app_name = 'login'
 urlpatterns = [
-    path('dashboard/', views.dashboard, name='dashboard'),
+    path('dashboard/', dashboard, name='dashboard'),
+    path('update_profile/', update_profile, name='update_profile'),
+    # Add other URL patterns as needed
 ]

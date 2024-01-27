@@ -21,16 +21,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item back1">
-                    <a class="nav-link " href="{% url 'home' %}">Home</a>
+                    <a class="nav-link " href="#">Home</a>
                 </li>
                 <li class="nav-item back1">
                     <a class="nav-link " href="#">Logout</a>
                 </li>
                 <li class="nav-item back1">
-                    <a class="nav-link " href="{% url 'signup' %}">SignUp</a>
+                    <a class="nav-link " href="#">SignUp</a>
                 </li>
                 <li class="nav-item back1">
-                    <a class="nav-link " href="">FAQ</a>
+                    <a class="nav-link " href="#">FAQ</a>
                 </li>
             </ul>
         </div>
@@ -155,28 +155,75 @@
                                     <input class="input" type="file" accept="image/jpeg, image/png, image/jpg " id="input-file">
                                     <label for="input-file" class="labels">Upload_Image</label>
 
-
-
                                 </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-12">
-                                                <h4 class="mb-0">Profile</h4>
-                                                <p class="text-secondary">StudentName: {{ name }}</p>
-                                                <p class="text-secondary">RollNo: {{ rollnumber }}</p>
-                                                <p class="text-secondary">Email: {{ email }}</p>
-                                                <p class="text-secondary">Branch: {{ branch }}</p>
-                                                <p class="text-secondary">Section: {{ section }}</p>
-                                                <p class="text-secondary">Year: {{ year }}</p>
+                                <div class="container mt-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <form id="profileForm" method="post" >
+                                                        {% csrf_token %}
+                                                        <div class="col-sm-12">
+                                                            <h4 class="mb-0">Profile</h4>
+                                                            <p class="text-secondary">Student Name: <span id="name">{{ name }}</span></p>
+                                                            <input type="text" name="editName" class="form-control" style="display: none;" value="{{ name }}">
+                                                            <p class="text-secondary">Roll No: <span id="rollnumber">{{ rollnumber }}</span></p>
+                                                            <input type="text" name="editRollNumber" class="form-control" style="display: none;" value="{{ rollnumber }}">
+                                
+                                                            <p class="text-secondary">Email: <span id="email">{{ email }}</span></p>
+                                                            <input type="text" name="editEmail" class="form-control" style="display: none;" value="{{ email }}">
+                                
+                                                            <p class="text-secondary">Branch: <span id="branch">{{ branch }}</span></p>
+                                                            <input type="text" name="editBranch" class="form-control" style="display: none;" value="{{ branch }}">
+                                
+                                                            <p class="text-secondary">Section: <span id="section">{{ section }}</span></p>
+                                                            <input type="text" name="editSection" class="form-control" style="display: none;" value="{{ section }}">
+                                
+                                                            <p class="text-secondary">Year: <span id="year">{{ year }}</span></p>
+                                                            <input type="text" name="editYear" class="form-control" style="display: none;" value="{{ year }}">
+                                                        </div>
+                                                        <button type="submit" class="btn btn-success" style="display: none;">Save</button>
+                                                    </form>
+                                                </div>
                                             </div>
-
+                                            
+                                            <button class="btn btn-primary" onclick="toggleEditMode()">Edit</button>
+                                            <button class="btn btn-secondary" onclick="cancelEdit()" style="display: none;">Cancel</button>
                                         </div>
-
+                                    </div>
                                 </div>
-                                    <button class="btn btn-primary" onclick="saveButton()">Edit</button>
-
-                                </div>
+                                
+                                <script>
+                                    function toggleEditMode() {
+                                        const elementsToToggle = document.querySelectorAll('[name^="edit"]');
+                                        elementsToToggle.forEach(element => {
+                                            element.style.display = (element.style.display === 'none') ? 'block' : 'none';
+                                        });
+                                
+                                        const editButton = document.querySelector('.btn-primary');
+                                        const saveButton = document.querySelector('.btn-success');
+                                        const cancelButton = document.querySelector('.btn-secondary');
+                                
+                                        editButton.textContent = (editButton.textContent === 'Edit') ? 'Cancel' : 'Edit';
+                                        saveButton.style.display = (saveButton.style.display === 'none') ? 'block' : 'none';
+                                        cancelButton.style.display = (cancelButton.style.display === 'none') ? 'block' : 'none';
+                                    }
+                                
+                                    function cancelEdit() {
+                                        const elementsToToggle = document.querySelectorAll('[name^="edit"]');
+                                        elementsToToggle.forEach(element => {
+                                            element.style.display = 'none';
+                                        });
+                                
+                                        const editButton = document.querySelector('.btn-primary');
+                                        const saveButton = document.querySelector('.btn-success');
+                                        const cancelButton = document.querySelector('.btn-secondary');
+                                
+                                        editButton.textContent = 'Edit';
+                                        saveButton.style.display = 'none';
+                                        cancelButton.style.display = 'none';
+                                    }
+                                </script>
 
                 </div>
                 </div>
