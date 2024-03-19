@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth import logout as auth_logout
 from signup.models import Student, User
 # Create your views here.
 def dashboard(request):
@@ -27,3 +28,9 @@ def dashboard(request):
     }
 
     return render(request, 'dashboard.html', context)
+
+def logout(request):
+    print('logged out')
+    auth_logout(request)
+
+    return redirect('home')
